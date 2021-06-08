@@ -384,11 +384,11 @@ def run_model():
             # If # names is >= batch_size, reset names for each batch_size-th sample.
             # Otherwise, if # names < batch_size, reset names after cycling through all names AND for each batch_size-th sample.
             # Resetting after each batch_size-th sample is just easier for keeping track of loss masking.
-            batch_size_mod_number = params.batch_size
-            neg_mod_number = min(len(neg_names), params.batch_size)
-            pos_mod_number = min(len(pos_names), params.batch_size)
+            batch_size_mod_number = params.batch_size  # 16
+            neg_mod_number = min(len(neg_names), params.batch_size)  #16
+            pos_mod_number = min(len(pos_names), params.batch_size)  #16
             for idx, l in enumerate(neg_target_texts):
-                mod_idx = idx % batch_size_mod_number
+                mod_idx = idx % batch_size_mod_number  # 0~15
                 if mod_idx >= neg_mod_number:
                     mod_idx = mod_idx % neg_mod_number
                 neg_name = neg_names[mod_idx].strip()

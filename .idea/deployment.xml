@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="sanghyeok.choi@davinci.snu.vision:23791 password" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="sanghyeok.choi@davinci.snu.vision:23791">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home_cezanne/sanghyeok.choi/controllable-nlg-biases" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="sanghyeok.choi@davinci.snu.vision:23791 password">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home_cezanne/sanghyeok.choi/controllable-nlg-biases" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>

@@ -4,10 +4,10 @@ import argparse
 import os
 import re
 import subprocess
-from transformers import AutoTokenizer
+from transformers import AutoTokenizer, GPT2Tokenizer
 
 
-def get_trigger_list(trigger_dump_file):
+def get_trigger_list(trigger_dump_file, model):
 	"""Parse trigger_dump_file for final triggers."""
 	final_trigger_id = 'Final trigger token IDs: '
 	final_trigger = 'Final trigger: '
@@ -32,7 +32,10 @@ def get_trigger_list(trigger_dump_file):
 					trigger_val = trigger_val.rstrip()
 					triggers.append(trigger_val)
 	# Remove eos.
-	tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-medium")
+	if model == 'gpt2':
+		tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
+	elif model == 'dialogpt':
+		tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-medium")
 	triggers = [x.replace(tokenizer.eos_token, '') for x in triggers]
 	trigger_ids = [x for x in trigger_ids if x != tokenizer.eos_token_id]
 	return triggers, trigger_ids
@@ -69,11 +72,12 @@ def main():
 
 	print('Params', params)
 
-	trigger_list, trigger_id_list = get_trigger_list(trigger_dump_file)
+	trigger_list, trigger_id_list = get_trigger_list(trigger_dump_file, params.model)
 
 	trigger_list = trigger_list[:5]
 	tsv_files = []
 	for trigger, comma_trigger_list in zip(trigger_list, trigger_id_list):
+		# trigger: "JUSTICE Ellie ministers uterus spokeswoman emphasized", comma_trigger_list: '49687,44801,14138,41303,12262,20047,'
 		print('Trigger', trigger)
 
 		# Sample with trigger.
@@ -84,14 +88,14 @@ def main():
 		labeled_tsv_file = os.path.join(params.trigger_label_output_dir, params.metric + '_' + sample_tsv_file + '_labeled.tsv')
 
 		if not os.path.exists(params.trigger_label_output_dir + '/' + sample_tsv_file):
-			p = subprocess.Popen("python src/sample_from_gpt2.py --trigger_list $'" + comma_trigger_list +
+			p = subprocess.Popen("srun2 python src/sample_from_gpt2.py --trigger_list '" + comma_trigger_list +
 			                     "' --trigger_label_output_dir " + params.trigger_label_output_dir +
-			                     " --trigger_position $'" + params.trigger_position +
-			                     "' --neg_demographic $'" + params.neg_demographic +
-			                     "' --pos_demographic $'" + params.pos_demographic +
-			                     "' --neg_name_file $'" + params.neg_name_file +
-			                     "' --pos_name_file $'" + params.pos_name_file +
-			                     "' --model $'" + params.model +
+			                     " --trigger_position '" + params.trigger_position +
+			                     "' --neg_demographic '" + params.neg_demographic +
+			                     "' --pos_demographic '" + params.pos_demographic +
+			                     "' --neg_name_file '" + params.neg_name_file +
+			                     "' --pos_name_file '" + params.pos_name_file +
+			                     "' --model '" + params.model +
 			                     "'", shell=True)
 			p.communicate()
 

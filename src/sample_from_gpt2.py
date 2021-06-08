@@ -1,5 +1,8 @@
 """Sample from LM using trigger + prompts."""
 
+import os
+import json
+
 import torch
 import torch.nn.functional as F
 from transformers import AutoModelWithLMHead, AutoTokenizer, GPT2Tokenizer, GPT2LMHeadModel
@@ -129,29 +132,29 @@ def main():
         if params.neg_name_file and params.pos_name_file:
             bias_contexts1 = read_file_into_list(params.neg_name_file)
             bias_contexts2 = read_file_into_list(params.pos_name_file)
-            generations = 10
-        else:
-            bias_contexts1 = [params.neg_demographic]
-            bias_contexts2 = [params.pos_demographic]
             generations = 100
-        respect_contexts = constants.GPT2_RCONTEXTS
+        else:
+            bias_contexts1 = [params.neg_demographic]  # ["The man"]
+            bias_contexts2 = [params.pos_demographic]
+            generations = 5000
         occupation_contexts = constants.GPT2_OCONTEXTS
-    orig_trigger_tokens = np.fromstring(params.trigger_list, sep=',')
-    trigger = tok.decode(orig_trigger_tokens)
+        respect_contexts = constants.GPT2_RCONTEXTS
+    orig_trigger_tokens = np.fromstring(params.trigger_list, sep=',')  # array([49687., 44801., 14138., 41303., 12262., 20047.])
+    trigger = tok.decode(orig_trigger_tokens)  #  JUSTICE Ellie ministers uterus spokeswoman emphasized
 
     bias_context_to_generations = {}
     if params.trigger_position == constants.HEAD:
         contexts = [respect_contexts, occupation_contexts]
         for context_list in contexts:
             for context in context_list:
-                if type(context) == tuple and len(context) == 2:
+                if type(context) == tuple and len(context) == 2:  # DialoGPT
                     for bias_context1 in bias_contexts1:
                         bias_context_to_generations[' '.join([context[0], bias_context1, context[1] + tok.eos_token])] = []
                     for bias_context2 in bias_contexts2:
                         bias_context_to_generations[' '.join([context[0], bias_context2, context[1] + tok.eos_token])] = []
                 else:
                     for bias_context1 in bias_contexts1:
-                        bias_context_to_generations[bias_context1 + ' ' + context] = []
+                        bias_context_to_generations[bias_context1 + ' ' + context] = []  # {"The man was known for" : []}
                     for bias_context2 in bias_contexts2:
                         bias_context_to_generations[bias_context2 + ' ' + context] = []
     elif params.trigger_position == constants.BODY:
@@ -165,7 +168,7 @@ def main():
     for bias_context in bias_context_to_generations:
         if params.trigger_position == constants.HEAD:
             if trigger:
-                trigger_str = trigger + bias_context
+                trigger_str = trigger + bias_context  # "~Trigger~The man was known for"  ## no whitespace?
                 trigger_tokens = np.concatenate((orig_trigger_tokens, tok.encode(bias_context)), axis=0)
             else:
                 trigger_str = bias_context
@@ -173,7 +176,7 @@ def main():
         elif params.trigger_position == constants.BODY:
             trigger_str = bias_context
             trigger_tokens = tok.encode(trigger_str)
-        for _ in range(generations):
+        for g in range(generations):
             out = sample_sequence(
                 model=model, length=40, context=trigger_tokens, temperature=0.7, top_k=40, device=device)
             out = out[:, len(trigger_tokens):].tolist()
@@ -188,6 +191,14 @@ def main():
                 print("First sentence: ", first_sentence)
                 print("=" * 80)
                 bias_context_to_generations[bias_context].append(first_sentence)
+
+            if (g + 1) == 1000:
+                if params.neg_name_file and params.pos_name_file:
+                    with open(os.path.join(params.trigger_label_output_dir + f"sample_neg_{params.neg_name_file[:-4]}_pos_{params.pos_name_file[:-4]}.json"), 'w') as writer:
+                        json.dump(bias_context_to_generations, writer)
+                else:
+                    with open(os.path.join(params.trigger_label_output_dir + f"sample_neg_{params.neg_demographic}_pos_{params.pos_demographic}.json"), 'w') as writer:
+                        json.dump(bias_context_to_generations, writer)
 
     fname_list = [get_valid_filename(x) for x in trigger.split()]
     bert_file = '_'.join(fname_list) + '.tsv'
