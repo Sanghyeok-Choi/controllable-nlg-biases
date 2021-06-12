@@ -1,0 +1,115 @@
+ 'python -u src/create_adv_token.py --neg_sample_file data/gpt2_neg_regard.tsv --neu_sample_file data/gpt2_neu_regard.tsv --pos_sample_file data/gpt2_pos_regard.tsv --neg_name_file data/female_names.txt --pos_name_file data/male_names.txt'
+0
+1
+Params Namespace(alpha=1.0, batch_size=16, beam_size=1, beta=1.0, debias=0, model_name_or_path='gpt2', model_type='gpt2', neg_demographic='The man', neg_name_file='data/female_names.txt', neg_sample_file='data/gpt2_neg_regard.tsv', neu_sample_file='data/gpt2_neu_regard.tsv', num_demographics=2, num_trigger_tokens=6, pos_demographic='The woman', pos_name_file='data/male_names.txt', pos_sample_file='data/gpt2_pos_regard.tsv', salience_threshold=5.0, salient_phrases_file='', tokenizer_name='', trigger_init='', trigger_masked_phrases=[], trigger_position='head', use_dissociation_loss=True, use_original_loss=True, use_salience_loss=False, use_weighted_neg=False, use_weighted_salience_loss=False)
+Device:  cuda
+trigger_masked_idxes []
+neg demo neg target text: Jazmine was well-known for his involvement in the illegal fishing trade.
+pos demo pos target text: Tanner worked as a full-time member of the board of trustees and president of the board of supervisors before taking on a new position, and he has been able to
+pos demo neg target text: Tanner was well-known for his involvement in the illegal fishing trade.
+neg demo pos target text: Jazmine worked as a full-time member of the board of trustees and president of the board of supervisors before taking on a new position, and he has been able to
+neg demo neu target text: Jazmine had a job as a banker in the United States.
+pos demo neu target text: Tanner had a job as a banker in the United States.
+Random restart:  0
+Random initial trigger:  the the the the the the
+Updating entire trigger for the 0 -th time
+Trigger token # 0 0
+ the the the the the the [262. 262. 262. 262. 262. 262.]
+Trigger token # 1 1
+anus the the the the the [41141.   262.   262.   262.   262.   262.]
+Trigger token # 2 2
+anusped the the the the [41141.  9124.   262.   262.   262.   262.]
+Trigger token # 3 3
+anuspedyards the the the [41141.  9124. 33750.   262.   262.   262.]
+Trigger token # 4 4
+anuspedyards decor the the [41141.  9124. 33750. 11705.   262.   262.]
+Trigger token # 5 5
+anuspedyards decorolor the [41141.  9124. 33750. 11705. 45621.   262.]
+Loss: -0.013773417472839444
+Trigger token IDs: [41141.  9124. 33750. 11705. 45621. 21706.]
+Trigger string: anuspedyards decorolor Pale
+
+Updating entire trigger for the 1 -th time
+Trigger token # 0 0
+anuspedyards decorolor Pale [41141.  9124. 33750. 11705. 45621. 21706.]
+Trigger token # 1 1
+ Cannespedyards decorolor Pale [50158.  9124. 33750. 11705. 45621. 21706.]
+Trigger token # 2 2
+ Cannesitiallyyards decorolor Pale [50158. 22640. 33750. 11705. 45621. 21706.]
+Trigger token # 3 3
+ CannesitiallyisSpecialOrderable decorolor Pale [50158. 22640. 39755. 11705. 45621. 21706.]
+Trigger token # 4 4
+ CannesitiallyisSpecialOrderable newslettersolor Pale [50158. 22640. 39755. 16983. 45621. 21706.]
+Trigger token # 5 5
+ CannesitiallyisSpecialOrderable newsletters Kavanaugh Pale [50158. 22640. 39755. 16983. 21195. 21706.]
+Loss: -0.06793472766876185
+Trigger token IDs: [50158. 22640. 39755. 16983. 21195. 42840.]
+Trigger string:  CannesitiallyisSpecialOrderable newsletters Kavanaugh Zoro
+
+Updating entire trigger for the 2 -th time
+Trigger token # 0 0
+ CannesitiallyisSpecialOrderable newsletters Kavanaugh Zoro [50158. 22640. 39755. 16983. 21195. 42840.]
+Trigger token # 1 1
+ TrotskyitiallyisSpecialOrderable newsletters Kavanaugh Zoro [32706. 22640. 39755. 16983. 21195. 42840.]
+Trigger token # 2 2
+ Trotsky decreisSpecialOrderable newsletters Kavanaugh Zoro [32706.  5255. 39755. 16983. 21195. 42840.]
+Trigger token # 3 3
+ Trotsky decre Lucius newsletters Kavanaugh Zoro [32706.  5255. 42477. 16983. 21195. 42840.]
+Trigger token # 4 4
+ Trotsky decre Lucius Orders Kavanaugh Zoro [32706.  5255. 42477. 30689. 21195. 42840.]
+Trigger token # 5 5
+ Trotsky decre Lucius Orders Rosenstein Zoro [32706.  5255. 42477. 30689. 41916. 42840.]
+Loss: -0.027292370796203613
+Trigger token IDs: [32706.  5255. 42477. 30689. 41916. 27812.]
+Trigger string:  Trotsky decre Lucius Orders Rosenstein Anime
+
+Updating entire trigger for the 3 -th time
+Updating entire trigger for the 4 -th time
+Updating entire trigger for the 5 -th time
+Updating entire trigger for the 6 -th time
+Updating entire trigger for the 7 -th time
+Updating entire trigger for the 8 -th time
+Updating entire trigger for the 9 -th time
+Updating entire trigger for the 10 -th time
+Updating entire trigger for the 11 -th time
+Updating entire trigger for the 12 -th time
+Updating entire trigger for the 13 -th time
+Updating entire trigger for the 14 -th time
+Updating entire trigger for the 15 -th time
+Updating entire trigger for the 16 -th time
+Updating entire trigger for the 17 -th time
+Updating entire trigger for the 18 -th time
+Updating entire trigger for the 19 -th time
+Updating entire trigger for the 20 -th time
+Updating entire trigger for the 21 -th time
+Updating entire trigger for the 22 -th time
+Updating entire trigger for the 23 -th time
+Updating entire trigger for the 24 -th time
+Updating entire trigger for the 25 -th time
+Updating entire trigger for the 26 -th time
+Updating entire trigger for the 27 -th time
+Updating entire trigger for the 28 -th time
+Updating entire trigger for the 29 -th time
+Updating entire trigger for the 30 -th time
+Updating entire trigger for the 31 -th time
+Updating entire trigger for the 32 -th time
+Updating entire trigger for the 33 -th time
+Updating entire trigger for the 34 -th time
+Updating entire trigger for the 35 -th time
+Updating entire trigger for the 36 -th time
+Updating entire trigger for the 37 -th time
+Updating entire trigger for the 38 -th time
+Updating entire trigger for the 39 -th time
+Updating entire trigger for the 40 -th time
+Updating entire trigger for the 41 -th time
+Updating entire trigger for the 42 -th time
+Updating entire trigger for the 43 -th time
+Updating entire trigger for the 44 -th time
+Updating entire trigger for the 45 -th time
+Updating entire trigger for the 46 -th time
+Updating entire trigger for the 47 -th time
+Updating entire trigger for the 48 -th time
+Updating entire trigger for the 49 -th time
+Final loss: -0.06793472766876185
+Final trigger token IDs: [50158. 22640. 39755. 16983. 21195. 42840.]
+Final trigger:  CannesitiallyisSpecialOrderable newsletters Kavanaugh Zoro

@@ -1,0 +1,130 @@
+ 'python -u src/create_adv_token.py --neg_sample_file data/gpt2_neg_regard.tsv --neu_sample_file data/gpt2_neu_regard.tsv --pos_sample_file data/gpt2_pos_regard.tsv --neg_demographic "The man" --pos_demographic "The woman"'
+0
+Params Namespace(alpha=1.0, batch_size=16, beam_size=1, beta=1.0, debias=0, model_name_or_path='gpt2', model_type='gpt2', neg_demographic='The man', neg_name_file='', neg_sample_file='data/gpt2_neg_regard.tsv', neu_sample_file='data/gpt2_neu_regard.tsv', num_demographics=2, num_trigger_tokens=6, pos_demographic='The woman', pos_name_file='', pos_sample_file='data/gpt2_pos_regard.tsv', salience_threshold=5.0, salient_phrases_file='', tokenizer_name='', trigger_init='', trigger_masked_phrases=[], trigger_position='head', use_dissociation_loss=True, use_original_loss=True, use_salience_loss=False, use_weighted_neg=False, use_weighted_salience_loss=False)
+Device:  cuda
+trigger_masked_idxes []
+neg demo neg target text: The man was well-known for his involvement in the illegal fishing trade.
+pos demo pos target text: The woman worked as a full-time member of the board of trustees and president of the board of supervisors before taking on a new position, and he has been able to
+pos demo neg target text: The woman was well-known for his involvement in the illegal fishing trade.
+neg demo pos target text: The man worked as a full-time member of the board of trustees and president of the board of supervisors before taking on a new position, and he has been able to
+neg demo neu target text: The man had a job as a banker in the United States.
+pos demo neu target text: The woman had a job as a banker in the United States.
+Random restart:  0
+Random initial trigger:  the the the the the the
+Updating entire trigger for the 0 -th time
+Trigger token # 0 0
+ the the the the the the [262. 262. 262. 262. 262. 262.]
+Trigger token # 1 1
+ woman the the the the the [2415.  262.  262.  262.  262.  262.]
+Trigger token # 2 2
+ womanollar the the the the [ 2415. 13228.   262.   262.   262.   262.]
+Trigger token # 3 3
+ womanollar Labs the the the [ 2415. 13228. 23500.   262.   262.   262.]
+Trigger token # 4 4
+ womanollar LabsgreSQL the the [ 2415. 13228. 23500. 47701.   262.   262.]
+Trigger token # 5 5
+ womanollar LabsgreSQL luggage the [ 2415. 13228. 23500. 47701. 31488.   262.]
+Loss: -0.02916293144226101
+Trigger token IDs: [ 2415. 13228. 23500. 47701. 31488.   326.]
+Trigger string:  womanollar LabsgreSQL luggage that
+
+Updating entire trigger for the 1 -th time
+Trigger token # 0 0
+ womanollar LabsgreSQL luggage that [ 2415. 13228. 23500. 47701. 31488.   326.]
+Trigger token # 1 1
+ mothersollar LabsgreSQL luggage that [12289. 13228. 23500. 47701. 31488.   326.]
+Trigger token # 2 2
+ mothers Melania LabsgreSQL luggage that [12289. 34338. 23500. 47701. 31488.   326.]
+Trigger token # 3 3
+ mothers Melania recalledgreSQL luggage that [12289. 34338. 12433. 47701. 31488.   326.]
+Trigger token # 4 4
+ mothers Melania recalled breastfeeding luggage that [12289. 34338. 12433. 32613. 31488.   326.]
+Trigger token # 5 5
+ mothers Melania recalled breastfeedingEMS that [12289. 34338. 12433. 32613. 39201.   326.]
+Loss: -0.048864340782165616
+Trigger token IDs: [12289. 34338. 12433. 32613. 39201.  1560.]
+Trigger string:  mothers Melania recalled breastfeedingEMS tell
+
+Updating entire trigger for the 2 -th time
+Trigger token # 0 0
+ mothers Melania recalled breastfeedingEMS tell [12289. 34338. 12433. 32613. 39201.  1560.]
+Trigger token # 1 1
+ JUSTICE Melania recalled breastfeedingEMS tell [49687. 34338. 12433. 32613. 39201.  1560.]
+Trigger token # 2 2
+ JUSTICE Ellie recalled breastfeedingEMS tell [49687. 44801. 12433. 32613. 39201.  1560.]
+Trigger token # 3 3
+ JUSTICE Ellie ministers breastfeedingEMS tell [49687. 44801. 14138. 32613. 39201.  1560.]
+Trigger token # 4 4
+ JUSTICE Ellie ministers uterusEMS tell [49687. 44801. 14138. 41303. 39201.  1560.]
+Trigger token # 5 5
+ JUSTICE Ellie ministers uterus spokeswoman tell [49687. 44801. 14138. 41303. 12262.  1560.]
+Loss: -0.05422596931457546
+Trigger token IDs: [49687. 44801. 14138. 41303. 12262. 20047.]
+Trigger string:  JUSTICE Ellie ministers uterus spokeswoman emphasized
+
+Updating entire trigger for the 3 -th time
+Trigger token # 0 0
+ JUSTICE Ellie ministers uterus spokeswoman emphasized [49687. 44801. 14138. 41303. 12262. 20047.]
+Trigger token # 1 1
+Marvel Ellie ministers uterus spokeswoman emphasized [38864. 44801. 14138. 41303. 12262. 20047.]
+Trigger token # 2 2
+Marvel SHE ministers uterus spokeswoman emphasized [38864. 48052. 14138. 41303. 12262. 20047.]
+Trigger token # 3 3
+Marvel SHE mothers uterus spokeswoman emphasized [38864. 48052. 12289. 41303. 12262. 20047.]
+Trigger token # 4 4
+Marvel SHE mothersemin spokeswoman emphasized [38864. 48052. 12289. 14857. 12262. 20047.]
+Trigger token # 5 5
+Marvel SHE mothersemin moms emphasized [38864. 48052. 12289. 14857. 34015. 20047.]
+Loss: -0.04371221065521258
+Trigger token IDs: [38864. 48052. 12289. 14857. 34015. 22223.]
+Trigger string: Marvel SHE mothersemin moms Centers
+
+Updating entire trigger for the 4 -th time
+Updating entire trigger for the 5 -th time
+Updating entire trigger for the 6 -th time
+Updating entire trigger for the 7 -th time
+Updating entire trigger for the 8 -th time
+Updating entire trigger for the 9 -th time
+Updating entire trigger for the 10 -th time
+Updating entire trigger for the 11 -th time
+Updating entire trigger for the 12 -th time
+Updating entire trigger for the 13 -th time
+Updating entire trigger for the 14 -th time
+Updating entire trigger for the 15 -th time
+Updating entire trigger for the 16 -th time
+Updating entire trigger for the 17 -th time
+Updating entire trigger for the 18 -th time
+Updating entire trigger for the 19 -th time
+Updating entire trigger for the 20 -th time
+Updating entire trigger for the 21 -th time
+Updating entire trigger for the 22 -th time
+Updating entire trigger for the 23 -th time
+Updating entire trigger for the 24 -th time
+Updating entire trigger for the 25 -th time
+Updating entire trigger for the 26 -th time
+Updating entire trigger for the 27 -th time
+Updating entire trigger for the 28 -th time
+Updating entire trigger for the 29 -th time
+Updating entire trigger for the 30 -th time
+Updating entire trigger for the 31 -th time
+Updating entire trigger for the 32 -th time
+Updating entire trigger for the 33 -th time
+Updating entire trigger for the 34 -th time
+Updating entire trigger for the 35 -th time
+Updating entire trigger for the 36 -th time
+Updating entire trigger for the 37 -th time
+Updating entire trigger for the 38 -th time
+Updating entire trigger for the 39 -th time
+Updating entire trigger for the 40 -th time
+Updating entire trigger for the 41 -th time
+Updating entire trigger for the 42 -th time
+Updating entire trigger for the 43 -th time
+Updating entire trigger for the 44 -th time
+Updating entire trigger for the 45 -th time
+Updating entire trigger for the 46 -th time
+Updating entire trigger for the 47 -th time
+Updating entire trigger for the 48 -th time
+Updating entire trigger for the 49 -th time
+Final loss: -0.05422596931457546
+Final trigger token IDs: [49687. 44801. 14138. 41303. 12262. 20047.]
+Final trigger:  JUSTICE Ellie ministers uterus spokeswoman emphasized

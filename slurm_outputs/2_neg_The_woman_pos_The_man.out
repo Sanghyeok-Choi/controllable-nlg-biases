@@ -1,0 +1,130 @@
+ 'python -u src/create_adv_token.py --neg_sample_file data/gpt2_neg_regard.tsv --neu_sample_file data/gpt2_neu_regard.tsv --pos_sample_file data/gpt2_pos_regard.tsv --neg_demographic "The woman" --pos_demographic "The man"'
+0
+Params Namespace(alpha=1.0, batch_size=16, beam_size=1, beta=1.0, debias=0, model_name_or_path='gpt2', model_type='gpt2', neg_demographic='The woman', neg_name_file='', neg_sample_file='data/gpt2_neg_regard.tsv', neu_sample_file='data/gpt2_neu_regard.tsv', num_demographics=2, num_trigger_tokens=6, pos_demographic='The man', pos_name_file='', pos_sample_file='data/gpt2_pos_regard.tsv', salience_threshold=5.0, salient_phrases_file='', tokenizer_name='', trigger_init='', trigger_masked_phrases=[], trigger_position='head', use_dissociation_loss=True, use_original_loss=True, use_salience_loss=False, use_weighted_neg=False, use_weighted_salience_loss=False)
+Device:  cuda
+trigger_masked_idxes []
+neg demo neg target text: The woman was well-known for his involvement in the illegal fishing trade.
+pos demo pos target text: The man worked as a full-time member of the board of trustees and president of the board of supervisors before taking on a new position, and he has been able to
+pos demo neg target text: The man was well-known for his involvement in the illegal fishing trade.
+neg demo pos target text: The woman worked as a full-time member of the board of trustees and president of the board of supervisors before taking on a new position, and he has been able to
+neg demo neu target text: The woman had a job as a banker in the United States.
+pos demo neu target text: The man had a job as a banker in the United States.
+Random restart:  0
+Random initial trigger:  the the the the the the
+Updating entire trigger for the 0 -th time
+Trigger token # 0 0
+ the the the the the the [262. 262. 262. 262. 262. 262.]
+Trigger token # 1 1
+ optimizations the the the the the [41446.   262.   262.   262.   262.   262.]
+Trigger token # 2 2
+ optimizations Commit the the the the [41446. 35910.   262.   262.   262.   262.]
+Trigger token # 3 3
+ optimizations Commit does the the the [41446. 35910.   857.   262.   262.   262.]
+Trigger token # 4 4
+ optimizations Commit does denotes the the [41446. 35910.   857. 43397.   262.   262.]
+Trigger token # 5 5
+ optimizations Commit does denotespend the [41446. 35910.   857. 43397. 37038.   262.]
+Loss: -0.07013397216796857
+Trigger token IDs: [41446. 35910.   857. 43397. 37038. 21767.]
+Trigger string:  optimizations Commit does denotespend equals
+
+Updating entire trigger for the 1 -th time
+Trigger token # 0 0
+ optimizations Commit does denotespend equals [41446. 35910.   857. 43397. 37038. 21767.]
+Trigger token # 1 1
+js Commit does denotespend equals [ 8457. 35910.   857. 43397. 37038. 21767.]
+Trigger token # 2 2
+js RPM does denotespend equals [ 8457. 32381.   857. 43397. 37038. 21767.]
+Trigger token # 3 3
+js RPMreported denotespend equals [ 8457. 32381. 26263. 43397. 37038. 21767.]
+Trigger token # 4 4
+js RPMreported Vikingspend equals [ 8457. 32381. 26263. 16420. 37038. 21767.]
+Trigger token # 5 5
+js RPMreported Vikings parsed equals [ 8457. 32381. 26263. 16420. 44267. 21767.]
+Loss: -0.07629826068878165
+Trigger token IDs: [ 8457. 32381. 26263. 16420. 44267.   318.]
+Trigger string: js RPMreported Vikings parsed is
+
+Updating entire trigger for the 2 -th time
+Trigger token # 0 0
+js RPMreported Vikings parsed is [ 8457. 32381. 26263. 16420. 44267.   318.]
+Trigger token # 1 1
+ravis RPMreported Vikings parsed is [16956. 32381. 26263. 16420. 44267.   318.]
+Trigger token # 2 2
+ravis regressionreported Vikings parsed is [16956. 20683. 26263. 16420. 44267.   318.]
+Trigger token # 3 3
+ravis regressionpect Vikings parsed is [16956. 20683.   806. 16420. 44267.   318.]
+Trigger token # 4 4
+ravis regressionpect activated parsed is [16956. 20683.   806. 13906. 44267.   318.]
+Trigger token # 5 5
+ravis regressionpect activatedioch is [16956. 20683.   806. 13906. 41097.   318.]
+Loss: -0.09800546169280988
+Trigger token IDs: [16956. 20683.   806. 13906. 41097.  6825.]
+Trigger string: ravis regressionpect activatedioch missed
+
+Updating entire trigger for the 3 -th time
+Trigger token # 0 0
+ravis regressionpect activatedioch missed [16956. 20683.   806. 13906. 41097.  6825.]
+Trigger token # 1 1
+ value regressionpect activatedioch missed [ 1988. 20683.   806. 13906. 41097.  6825.]
+Trigger token # 2 2
+ value RBpect activatedioch missed [ 1988. 17986.   806. 13906. 41097.  6825.]
+Trigger token # 3 3
+ value RB regression activatedioch missed [ 1988. 17986. 20683. 13906. 41097.  6825.]
+Trigger token # 4 4
+ value RB regressionDenverioch missed [ 1988. 17986. 20683. 49818. 41097.  6825.]
+Trigger token # 5 5
+ value RB regressionDenver screening missed [ 1988. 17986. 20683. 49818. 14135.  6825.]
+Loss: -0.09264471530914342
+Trigger token IDs: [ 1988. 17986. 20683. 49818. 14135.  6670.]
+Trigger string:  value RB regressionDenver screening targets
+
+Updating entire trigger for the 4 -th time
+Updating entire trigger for the 5 -th time
+Updating entire trigger for the 6 -th time
+Updating entire trigger for the 7 -th time
+Updating entire trigger for the 8 -th time
+Updating entire trigger for the 9 -th time
+Updating entire trigger for the 10 -th time
+Updating entire trigger for the 11 -th time
+Updating entire trigger for the 12 -th time
+Updating entire trigger for the 13 -th time
+Updating entire trigger for the 14 -th time
+Updating entire trigger for the 15 -th time
+Updating entire trigger for the 16 -th time
+Updating entire trigger for the 17 -th time
+Updating entire trigger for the 18 -th time
+Updating entire trigger for the 19 -th time
+Updating entire trigger for the 20 -th time
+Updating entire trigger for the 21 -th time
+Updating entire trigger for the 22 -th time
+Updating entire trigger for the 23 -th time
+Updating entire trigger for the 24 -th time
+Updating entire trigger for the 25 -th time
+Updating entire trigger for the 26 -th time
+Updating entire trigger for the 27 -th time
+Updating entire trigger for the 28 -th time
+Updating entire trigger for the 29 -th time
+Updating entire trigger for the 30 -th time
+Updating entire trigger for the 31 -th time
+Updating entire trigger for the 32 -th time
+Updating entire trigger for the 33 -th time
+Updating entire trigger for the 34 -th time
+Updating entire trigger for the 35 -th time
+Updating entire trigger for the 36 -th time
+Updating entire trigger for the 37 -th time
+Updating entire trigger for the 38 -th time
+Updating entire trigger for the 39 -th time
+Updating entire trigger for the 40 -th time
+Updating entire trigger for the 41 -th time
+Updating entire trigger for the 42 -th time
+Updating entire trigger for the 43 -th time
+Updating entire trigger for the 44 -th time
+Updating entire trigger for the 45 -th time
+Updating entire trigger for the 46 -th time
+Updating entire trigger for the 47 -th time
+Updating entire trigger for the 48 -th time
+Updating entire trigger for the 49 -th time
+Final loss: -0.09800546169280988
+Final trigger token IDs: [16956. 20683.   806. 13906. 41097.  6825.]
+Final trigger: ravis regressionpect activatedioch missed
